@@ -1,0 +1,59 @@
+ 1. 在类声明中添加两个私有变量：
+           QPoint mousePoint;      //鼠标相对于窗体的位置
+           bool isMousePressed;    //鼠标是否按下
+
+       2. 在类声明中添加鼠标移动事件
+           protected:
+           virtual void mousePressEvent(QMouseEvent *event);  //鼠标按下事件
+           virtual void mouseMoveEvent(QMouseEvent *event);   //窗体拖动事件
+           virtual void mouseReleaseEvent(QMouseEvent *event);//鼠标释放事件
+   
+       3. 定义鼠标操作事件
+        
+         //鼠标按下事件
+         void MyWidget::mousePressEvent(QMouseEvent *event)
+       {
+             mousePoint = event->pos();    //鼠标相对于窗体的位置
+             isMousePressed = true;        //鼠标按下
+             event->accept();
+        }
+
+        //窗体拖动事件
+        void MyWidget::mouseMoveEvent(QMouseEvent *event)
+       {
+             //若鼠标左键被按下
+             if(isMousePressed == true)
+            {    
+                  //鼠标相对于屏幕的位置
+                  QPoint curMousePoint = event->globalPos() - mousePoint;  
+                 //移动主窗体位置
+                  move(curMousePoint);   
+             }
+             event->accept();
+        }
+      
+        //鼠标释放事件
+        void MyWidget::mouseReleaseEvent(QMouseEvent *event)
+        {
+              //鼠标未按下
+              isMousePressed = false;
+              event->accept();
+        }
+
+
+   *注：必须在头文件加入#include <QMouseEvent>
+background: transparent;
+this->setWindowFlags(Qt::FramelessWindowHint);
+
+
+#include <QGraphicsDropShadowEffect>//设置边框阴影
+        this->setWindowFlags(Qt::FramelessWindowHint);
+	this->setAttribute(Qt::WA_TranslucentBackground);
+	QGraphicsDropShadowEffect *shadow = new QGraphicsDropShadowEffect;
+	shadow->setBlurRadius(5);
+	shadow->setColor(Qt::black);
+	shadow->setOffset(0);
+	ui.GL_widget->setGraphicsEffect(shadow);
+
+
+
