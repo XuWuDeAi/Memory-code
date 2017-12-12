@@ -1,52 +1,52 @@
- 1. ÔÚÀàÉùÃ÷ÖĞÌí¼ÓÁ½¸öË½ÓĞ±äÁ¿£º
-           QPoint mousePoint;      //Êó±êÏà¶ÔÓÚ´°ÌåµÄÎ»ÖÃ
-           bool isMousePressed;    //Êó±êÊÇ·ñ°´ÏÂ
+ 1. åœ¨ç±»å£°æ˜ä¸­æ·»åŠ ä¸¤ä¸ªç§æœ‰å˜é‡ï¼š
+           QPoint mousePoint;      //é¼ æ ‡ç›¸å¯¹äºçª—ä½“çš„ä½ç½®
+           bool isMousePressed;    //é¼ æ ‡æ˜¯å¦æŒ‰ä¸‹
 
-       2. ÔÚÀàÉùÃ÷ÖĞÌí¼ÓÊó±êÒÆ¶¯ÊÂ¼ş
+       2. åœ¨ç±»å£°æ˜ä¸­æ·»åŠ é¼ æ ‡ç§»åŠ¨äº‹ä»¶
            protected:
-           virtual void mousePressEvent(QMouseEvent *event);  //Êó±ê°´ÏÂÊÂ¼ş
-           virtual void mouseMoveEvent(QMouseEvent *event);   //´°ÌåÍÏ¶¯ÊÂ¼ş
-           virtual void mouseReleaseEvent(QMouseEvent *event);//Êó±êÊÍ·ÅÊÂ¼ş
+           virtual void mousePressEvent(QMouseEvent *event);  //é¼ æ ‡æŒ‰ä¸‹äº‹ä»¶
+           virtual void mouseMoveEvent(QMouseEvent *event);   //çª—ä½“æ‹–åŠ¨äº‹ä»¶
+           virtual void mouseReleaseEvent(QMouseEvent *event);//é¼ æ ‡é‡Šæ”¾äº‹ä»¶
    
-       3. ¶¨ÒåÊó±ê²Ù×÷ÊÂ¼ş
+       3. å®šä¹‰é¼ æ ‡æ“ä½œäº‹ä»¶
         
-         //Êó±ê°´ÏÂÊÂ¼ş
+         //é¼ æ ‡æŒ‰ä¸‹äº‹ä»¶
          void MyWidget::mousePressEvent(QMouseEvent *event)
        {
-             mousePoint = event->pos();    //Êó±êÏà¶ÔÓÚ´°ÌåµÄÎ»ÖÃ
-             isMousePressed = true;        //Êó±ê°´ÏÂ
+             mousePoint = event->pos();    //é¼ æ ‡ç›¸å¯¹äºçª—ä½“çš„ä½ç½®
+             isMousePressed = true;        //é¼ æ ‡æŒ‰ä¸‹
              event->accept();
         }
 
-        //´°ÌåÍÏ¶¯ÊÂ¼ş
+        //çª—ä½“æ‹–åŠ¨äº‹ä»¶
         void MyWidget::mouseMoveEvent(QMouseEvent *event)
        {
-             //ÈôÊó±ê×ó¼ü±»°´ÏÂ
+             //è‹¥é¼ æ ‡å·¦é”®è¢«æŒ‰ä¸‹
              if(isMousePressed == true)
             {    
-                  //Êó±êÏà¶ÔÓÚÆÁÄ»µÄÎ»ÖÃ
+                  //é¼ æ ‡ç›¸å¯¹äºå±å¹•çš„ä½ç½®
                   QPoint curMousePoint = event->globalPos() - mousePoint;  
-                 //ÒÆ¶¯Ö÷´°ÌåÎ»ÖÃ
+                 //ç§»åŠ¨ä¸»çª—ä½“ä½ç½®
                   move(curMousePoint);   
              }
              event->accept();
         }
       
-        //Êó±êÊÍ·ÅÊÂ¼ş
+        //é¼ æ ‡é‡Šæ”¾äº‹ä»¶
         void MyWidget::mouseReleaseEvent(QMouseEvent *event)
         {
-              //Êó±êÎ´°´ÏÂ
+              //é¼ æ ‡æœªæŒ‰ä¸‹
               isMousePressed = false;
               event->accept();
         }
 
 
-   *×¢£º±ØĞëÔÚÍ·ÎÄ¼ş¼ÓÈë#include <QMouseEvent>
+   *æ³¨ï¼šå¿…é¡»åœ¨å¤´æ–‡ä»¶åŠ å…¥#include <QMouseEvent>
 background: transparent;
 this->setWindowFlags(Qt::FramelessWindowHint);
 
 
-#include <QGraphicsDropShadowEffect>//ÉèÖÃ±ß¿òÒõÓ°
+#include <QGraphicsDropShadowEffect>//è®¾ç½®è¾¹æ¡†é˜´å½±
         this->setWindowFlags(Qt::FramelessWindowHint);
 	this->setAttribute(Qt::WA_TranslucentBackground);
 	QGraphicsDropShadowEffect *shadow = new QGraphicsDropShadowEffect;
@@ -55,5 +55,5 @@ this->setWindowFlags(Qt::FramelessWindowHint);
 	shadow->setOffset(0);
 	ui.GL_widget->setGraphicsEffect(shadow);
 
-
+this->setWindowOpacity(0.9); //è®¾ç½®windowä¸é€æ˜æ€§
 
