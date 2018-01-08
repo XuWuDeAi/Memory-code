@@ -56,4 +56,5 @@ this->setWindowFlags(Qt::FramelessWindowHint);
 	ui.GL_widget->setGraphicsEffect(shadow);
 
 this->setWindowOpacity(0.9); //设置window不透明性
+this->setAttribute(Qt::WA_TranslucentBackground);//父窗口透明
 
